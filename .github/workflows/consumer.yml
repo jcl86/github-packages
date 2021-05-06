@@ -22,7 +22,7 @@ jobs:
 
       - name: Build
         run: |
-          echo "Username: ${{ GITHUB_ACTOR }}"
-          dotnet nuget add source https://nuget.pkg.github.com/jcl86/index.json -u ${{ GITHUB_ACTOR }} -n github -p ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text
+          echo "Username: ${{ env.GITHUB_ACTOR }}"
+          dotnet nuget add source https://nuget.pkg.github.com/jcl86/index.json -u ${{ env.GITHUB_ACTOR }} -n github -p ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text
           dotnet restore src/SuperConsumer/SuperConsumer.csproj
           dotnet build src/SuperConsumer/SuperConsumer.csproj -c $BUILD_CONFIG
