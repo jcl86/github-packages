@@ -37,21 +37,21 @@ jobs:
 
     steps:
 
-        - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-        - uses: actions/setup-dotnet@v1
-          with:
-            dotnet-version: '3.1.x'
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
 
-        - name: dotnet build
-          run: dotnet build github-packages.sln -c $BUILD_CONFIG
-        - name: dotnet pack [SuperLibrary]
-          run: dotnet pack ./src/SuperLibrary/SuperLibrary.csproj -c $BUILD_CONFIG --include-source --include-symbols -o ./artifacts
-        
-        - name: setup nuget
-          uses: NuGet/setup-nuget@v1.0.5
-          with:
-            nuget-version: latest
-          
-        - name: Publish to Github packages
-          run: dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key {{secrets.GITHUB_TOKEN}} --source https://nuget.pkg.github.com/jcl86/index.json --skip-duplicate
+      - name: dotnet build
+        run: dotnet build github-packages.sln -c $BUILD_CONFIG
+      - name: dotnet pack [SuperLibrary]
+        run: dotnet pack ./src/SuperLibrary/SuperLibrary.csproj -c $BUILD_CONFIG --include-source --include-symbols -o ./artifacts
+
+      - name: setup nuget
+        uses: NuGet/setup-nuget@v1.0.5
+        with:
+          nuget-version: latest
+
+      - name: Publish to Github packages
+        run: dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key {{secrets.GITHUB_TOKEN}} --source https://nuget.pkg.github.com/jcl86/index.json --skip-duplicate
