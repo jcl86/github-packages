@@ -37,7 +37,7 @@ dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key yourAccesTokenWithW
 
 Or you can configure a pipeline like this:
 
-https://github.com/jcl86/github-packages/blob/main/.github/workflows/main.yml
+https://github.com/jcl86/github-packages/blob/main/.github/workflows/publish-to-github-packages.yml
 
 Inside the pipeline, the gitub access token (which was created in the first step) can be accesed via ${{secrets.GITHUB_TOKEN}} variable, provided by the action itself.
 
@@ -80,6 +80,12 @@ As it contains user secrets, add Nuget.Config file to your repository .gitignore
 ````
 dotnet add src/SuperConsumer/SuperConsumer.csproj package SuperLibrary --version 1.0.6
 ````
+
+# Consume a package within a github action
+
+If we want to conume a package that we have previously uploaded to github packages, we must configure nuget in the action, and then add a source with our credentials:
+
+https://github.com/jcl86/github-packages/blob/main/.github/workflows/consumer.yml
 
 
 ## Sources:
