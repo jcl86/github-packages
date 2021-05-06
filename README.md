@@ -2,6 +2,8 @@
 
 Testing github packages
 
+[![Publish on Nuget](https://github.com/jcl86/github-packages/actions/workflows/cd.yaml/badge.svg)](https://github.com/jcl86/github-packages/actions/workflows/cd.yaml)
+
 ### 1. Create github access token
 
 https://docs.github.com/es/github/authenticating-to-github/creating-a-personal-access-token
