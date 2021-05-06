@@ -27,7 +27,7 @@ https://docs.github.com/es/github/authenticating-to-github/creating-a-personal-a
 
 ### 3. Dotnet cli
 
-You could publish the repository with a few coommands:
+You could publish the repository with a few commands:
 
 ````
 dotnet pack ./src/SuperLibrary/SuperLibrary.csproj -c release -o ./artifacts
@@ -81,3 +81,9 @@ As it contains user secrets, add Nuget.Config file to your repository .gitignore
 dotnet add src/SuperConsumer/SuperConsumer.csproj package SuperLibrary --version 1.0.6
 ````
 
+
+## Sources:
+
+https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-nuget-registry
+
+https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows

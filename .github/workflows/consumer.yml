@@ -1,0 +1,22 @@
+name: Consumer CI
+on:
+  push:
+      branches: 
+        - main
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+    name: Build
+    env:
+      BUILD_CONFIG: Release
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x'
+    
+      - name: Build
+        run: |
+          dotnet nuget add source https://nuget.pkg.github.com/jcl86/index.json -n github -p ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text
+          dotnet restore src/SuperConsumer/SuperConsumer.csproj -c $BUILD_CONFIG
+          dotnet build src/SuperConsumer/SuperConsumer.csproj -c $BUILD_CONFIG
