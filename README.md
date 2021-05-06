@@ -4,7 +4,9 @@ This repo contains an example of how we can work with github packages as a nuget
 
 We will work in a very similar way to how we would work with nuget.org, with the additional feature that we can publish private packages, simply making the containing repository visibility private.
 
-[![Publish on Github packages](https://github.com/jcl86/github-packages/actions/workflows/main.yml/badge.svg)](https://github.com/jcl86/github-packages/actions/workflows/main.yml)
+[![Publish on Github packages](https://github.com/jcl86/github-packages/actions/workflows/publish-to-github-packages.yml/badge.svg)](https://github.com/jcl86/github-packages/actions/workflows/publish-to-github-packages.yml)
+
+[![Consumer CI](https://github.com/jcl86/github-packages/actions/workflows/consumer.yml/badge.svg)](https://github.com/jcl86/github-packages/actions/workflows/consumer.yml)
 
 # Publish a package
 
