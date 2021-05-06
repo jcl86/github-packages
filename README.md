@@ -1,4 +1,4 @@
-# github-packages
+# Github packages
 
 Testing github packages
 
