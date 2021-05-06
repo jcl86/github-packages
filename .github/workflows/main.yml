@@ -41,17 +41,4 @@ jobs:
           nuget-version: latest
 
       - name: Publish to Github packages
-        run: |
-          for f in ./artifacts/*.nupkg
-          do
-            echo "Publishing $f"
-            curl --silent --show-error --fail -vX PUT -u "jcl86:${{ secrets.GITHUB_TOKEN }}" -F package=@$f https://nuget.pkg.github.com/jcl86/
-            if [ $? -eq 0 ]
-            then
-              echo "successfully pushed $f"
-            else
-              echo "failed to push $f" >&2
-              exit 1
-            fi
-          done
-        shell: bash
+        run: dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key {{secrets.GITHUB_TOKEN}} --source https://nuget.pkg.github.com/jcl86/index.json --skip-duplicate
