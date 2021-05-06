@@ -3,19 +3,12 @@ on:
   push:
       branches: 
         - master
-
 jobs:
-
   continuous-integration:
-
     runs-on: ubuntu-latest
-
     name: Build
-    
     steps:
-
       - uses: actions/checkout@v2
-
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x'
@@ -25,20 +18,14 @@ jobs:
           dotnet build
 
   continuous-deployment:
-
     needs: [continuous-integration]
-
     runs-on: ubuntu-latest
- 
     name: Pack & publish to github packages
-    
     env:
       BUILD_CONFIG: Release
 
     steps:
-
       - uses: actions/checkout@v2
-
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x'
