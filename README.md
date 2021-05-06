@@ -2,7 +2,7 @@
 
 Testing github packages
 
-[![Publish on Github packages](https://github.com/jcl86/github-packages/actions/workflows/cd.yaml/badge.svg)](https://github.com/jcl86/github-packages/actions/workflows/cd.yaml)
+[![Publish on Github packages](https://github.com/jcl86/github-packages/actions/workflows/main.yml/badge.svg)](https://github.com/jcl86/github-packages/actions/workflows/main.yml)
 
 ### 1. Create github access token
 
@@ -25,5 +25,6 @@ https://docs.github.com/es/github/authenticating-to-github/creating-a-personal-a
 
 ````
 dotnet pack --configuration Release
-dotnet nuget push "bin/Release/SuperLibrary.1.0.0.nupkg"  --api-key yourAccesTokenWithWritepermissionInPGithubPackages --source https://nuget.pkg.github.com/OWNER/index.json
+dotnet pack ./src/SuperLibrary/SuperLibrary.csproj -c release -o ./artifacts
+dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key yourAccesTokenWithWritepermissionInPGithubPackages --source https://nuget.pkg.github.com/jcl86/index.json --skip-duplicate
 ````
