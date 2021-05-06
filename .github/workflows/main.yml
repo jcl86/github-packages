@@ -41,4 +41,4 @@ jobs:
           nuget-version: latest
 
       - name: Publish to Github packages
-        run: dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key {{secrets.GITHUB_TOKEN}} --source https://nuget.pkg.github.com/jcl86/index.json --skip-duplicate
+        run: dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key {{secrets.GH_PACKAGES_KEY}} --source https://nuget.pkg.github.com/jcl86/index.json --skip-duplicate
