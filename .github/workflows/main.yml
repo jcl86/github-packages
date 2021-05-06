@@ -42,6 +42,4 @@ jobs:
 
       - name: Publish to Github packages
         run: |
-          echo {{secrets.GITHUB_TOKEN}}
-          echo "{{secrets.GITHUB_TOKEN}}"
-          dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key {{secrets.GITHUB_TOKEN}} --source https://nuget.pkg.github.com/jcl86/index.json --skip-duplicate
+          dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key ${{secrets.GITHUB_TOKEN}} --source https://nuget.pkg.github.com/jcl86/index.json --skip-duplicate
