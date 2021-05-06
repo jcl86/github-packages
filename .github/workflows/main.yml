@@ -33,7 +33,7 @@ jobs:
       - name: dotnet build
         run: dotnet build github-packages.sln -c $BUILD_CONFIG
       - name: dotnet pack [SuperLibrary]
-        run: dotnet pack ./src/SuperLibrary/SuperLibrary.csproj -c $BUILD_CONFIG --include-source --include-symbols -o ./artifacts
+        run: dotnet pack ./src/SuperLibrary/SuperLibrary.csproj -c $BUILD_CONFIG -o ./artifacts
 
       - name: setup nuget
         uses: NuGet/setup-nuget@v1.0.5
@@ -41,4 +41,17 @@ jobs:
           nuget-version: latest
 
       - name: Publish to Github packages
-        run: dotnet nuget push ./artifacts/SuperLibrary.*.nupkg --api-key {{secrets.GITHUB_TOKEN}} --source https://nuget.pkg.github.com/jcl86/index.json --skip-duplicate
+        run: |
+          for f in ./artifacts/*.nupkg
+          do
+            echo "Publishing $f"
+            curl --silent --show-error --fail -vX PUT -u "jcl86:${{ secrets.GITHUB_TOKEN }}" -F package=@$f https://nuget.pkg.github.com/jcl86/
+            if [ $? -eq 0 ]
+            then
+              echo "successfully pushed $f"
+            else
+              echo "failed to push $f" >&2
+              exit 1
+            fi
+          done
+        shell: bash
