@@ -89,7 +89,11 @@ If we want to conume a package that we have previously uploaded to github packag
 
 https://github.com/jcl86/github-packages/blob/main/.github/workflows/consumer.yml
 
+GITHUB_TOKEN should contain the committer acces token, but if this is not your case, you can always put a valid access token in a secret:
 
+````
+      dotnet nuget add source https://nuget.pkg.github.com/jcl86/index.json -u your_user -n github -p ${{ secrets.READ_ACCESS_TOKEN }} --store-password-in-clear-text
+````
 ## Sources:
 
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-nuget-registry
